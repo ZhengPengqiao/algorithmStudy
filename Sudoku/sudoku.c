@@ -156,7 +156,6 @@ int calculatData(int x, int y)
 				{
 					if ( calculatData(0,y+1) == 0 )
 					{
-						printf("return from x=%d y=%d\n", i, y);
 						return 0;
 					}	
 				}
@@ -164,7 +163,6 @@ int calculatData(int x, int y)
 				{
 					if ( calculatData(i+1,y) == 0 )
 					{
-						printf("return from x=%d y=%d\n", i, y);
 						return 0;
 					}		
 				}
@@ -193,7 +191,6 @@ int calculatData(int x, int y)
 					{
 						if ( calculatData(0,j+1) == 0 )
 						{
-							printf("return from x=%d y=%d\n", i, j);
 							return 0;
 						}	
 					}
@@ -201,7 +198,6 @@ int calculatData(int x, int y)
 					{
 						if ( calculatData(i+1,j) == 0 )
 						{
-							printf("return from x=%d y=%d\n", i, j);
 							return 0;
 						}		
 					}
@@ -226,56 +222,65 @@ int main()
 	memset(suduFlag, 0, sizeof(suduFlag));
 	clearNumber(0,0);
 
-	// do
-	// {
-	// 	printf("请输入你要设置的位置和值(都为-1代表输入结束)： x y val ->\n");
-	// 	scanf("%d%d%d", &x, &y, &val);
-	// 	printf("you input is :x=%d y=%d val=%d\n", x, y, val);
-	// 	if( x == -1 && y == -1 && val == -1 )
-	// 	{
-	// 		printf("输入结束：：正在计算\n");
-	// 	}
-	// 	else if ( x == -1 || y == -1 || val == -1  )
-	// 	{
-	// 		printf("数据非法，从新输入\n");
-	// 	}
-	// 	else
-	// 	{
- 	//    	sudu[x][y] = val;
-	// 	}
-	// }while( !((x == -1) && (y == -1) && (val == -1)) );
+	do
+	{
+		printf("请输入你要设置的位置和值(都为-1代表输入结束)： x y val ->\n");
+		scanf("%d%d%d", &x, &y, &val);
+		printf("you input is :x=%d y=%d val=%d\n", x, y, val);
+		if( x == -1 && y == -1 && val == -1 )
+		{
+			printf("输入结束：：正在计算\n");
+		}
+		else if ( x == -1 || y == -1 || val == -1  )
+		{
+			printf("数据非法，从新输入\n");
+		}
+		else
+		{
+	 	   	sudu[x][y] = val;
+	 	   	suduFlag[x][y] = 1;
+		}
+	}while( !((x == -1) && (y == -1) && (val == -1)) );
 
-	setNumber( 0, 0, 3);
-	setNumber( 0, 1, 7);
-	setNumber( 0, 4, 2);
-	setNumber( 0, 6, 6);
-	setNumber( 1, 1, 5);
-	setNumber( 1, 3, 8);
-	setNumber( 2, 0, 9);
-	setNumber( 2, 1, 6);
-	setNumber( 2, 8, 4);
-	setNumber( 3, 3, 9);
-	setNumber( 3, 5, 4);
-	setNumber( 3, 8, 3);
-	setNumber( 4, 4, 1);
-	setNumber( 5, 0, 4);
-	setNumber( 5, 3, 5);
-	setNumber( 5, 5, 8);
-	setNumber( 6, 0, 6);
-	setNumber( 6, 7, 7);
-	setNumber( 6, 8, 9);
-	setNumber( 7, 5, 1);
-	setNumber( 7, 7, 4);
-	setNumber( 8, 2, 5);
-	setNumber( 8, 4, 3);
-	setNumber( 8, 7, 6);
-	setNumber( 8, 8, 8);
+	// setNumber( 0, 0, 3);
+	// setNumber( 0, 1, 7);
+	// setNumber( 0, 4, 2);
+	// setNumber( 0, 6, 6);
+	// setNumber( 1, 1, 5);
+	// setNumber( 1, 3, 8);
+	// setNumber( 2, 0, 9);
+	// setNumber( 2, 1, 6);
+	// setNumber( 2, 8, 4);
+	// setNumber( 3, 3, 9);
+	// setNumber( 3, 5, 4);
+	// setNumber( 3, 8, 3);
+	// setNumber( 4, 4, 1);
+	// setNumber( 5, 0, 4);
+	// setNumber( 5, 3, 5);
+	// setNumber( 5, 5, 8);
+	// setNumber( 6, 0, 6);
+	// setNumber( 6, 7, 7);
+	// setNumber( 6, 8, 9);
+	// setNumber( 7, 5, 1);
+	// setNumber( 7, 7, 4);
+	// setNumber( 8, 2, 5);
+	// setNumber( 8, 4, 3);
+	// setNumber( 8, 7, 6);
+	// setNumber( 8, 8, 8);
 
-
-	calculatData(0,0);
-
-	printf("Success calculat,  You Are Lucky Dog\n");
 	showSudo();
+
+	int ret = calculatData(0,0);
+
+	if( ret == 0 )
+	{
+		printf("Success calculat,  You Are Lucky Dog\n");
+		showSudo();
+	}
+	else
+	{
+		printf("Failure calculat,  You Can To Death\n");
+	}
 	return 0;
 }
 
