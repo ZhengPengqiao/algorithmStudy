@@ -2,9 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 int sudu[9][9];
 int suduFlag[9][9];
+
+unsigned long getTime()
+{
+	struct timeval cur;
+	gettimeofday(&cur,0);
+	unsigned long time = cur.tv_sec*1000+cur.tv_usec/1000;
+	return time;
+}
+
 
 
 //输出9*9矩阵的数据
@@ -219,6 +229,7 @@ int calculatData(int x, int y)
 int main()
 {
 	int x,y,val;
+	unsigned long start, end;
 	memset(suduFlag, 0, sizeof(suduFlag));
 	clearNumber(0,0);
 
@@ -242,35 +253,12 @@ int main()
 		}
 	}while( !((x == -1) && (y == -1) && (val == -1)) );
 
-	// setNumber( 0, 0, 3);
-	// setNumber( 0, 1, 7);
-	// setNumber( 0, 4, 2);
-	// setNumber( 0, 6, 6);
-	// setNumber( 1, 1, 5);
-	// setNumber( 1, 3, 8);
-	// setNumber( 2, 0, 9);
-	// setNumber( 2, 1, 6);
-	// setNumber( 2, 8, 4);
-	// setNumber( 3, 3, 9);
-	// setNumber( 3, 5, 4);
-	// setNumber( 3, 8, 3);
-	// setNumber( 4, 4, 1);
-	// setNumber( 5, 0, 4);
-	// setNumber( 5, 3, 5);
-	// setNumber( 5, 5, 8);
-	// setNumber( 6, 0, 6);
-	// setNumber( 6, 7, 7);
-	// setNumber( 6, 8, 9);
-	// setNumber( 7, 5, 1);
-	// setNumber( 7, 7, 4);
-	// setNumber( 8, 2, 5);
-	// setNumber( 8, 4, 3);
-	// setNumber( 8, 7, 6);
-	// setNumber( 8, 8, 8);
-
 	showSudo();
 
+	start = getTime();
 	int ret = calculatData(0,0);
+	end = getTime();
+	printf("start=%lu end=%lu  ==%lu\n", start, end , end-start);
 
 	if( ret == 0 )
 	{
