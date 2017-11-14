@@ -61,46 +61,31 @@ int isNumberOk(int x, int y)
 	{
 		if( (sudu[x][y] == sudu[i][y]) && (i != x) )
 		{
-			break;
+			return -1;
 		}
 	} 
-	
-	if( i < 9 )
-	{
-		return -1;
-	}
 
 	for ( i = 0; i < 9; i++ )
 	{
 		if( (sudu[x][y] == sudu[x][i]) && (i != y) )
 		{
-			break;
+			return -1;
 		}
 	} 
-	
-	if( i < 9 )
-	{
-		return -1;
-	}
 
 	temx = x/3*3;
 	temy = y/3*3;
 
-	for ( i = temx; i < temx+3; i++ )
+	for ( i = temx; i < temx+3; i++ ) 
 	{
 		for ( j = temy; j < temy+3; j++ )
 		{
 			if( sudu[x][y] == sudu[i][j] && (i != x) && (j != y))
 			{
-				break;
+				return -1;
 			}			
 		}
 	} 
-
-	if( (i < temx+3) || (j < temy+3) )
-	{
-		return -1;
-	}	
 
 	return 0;
 }
@@ -160,6 +145,7 @@ int calculatData(int x, int y)
 		for(int v = 1; v <= 9; v++ )
 		{
 			sudu[i][y] = v;
+
 			if ( isNumberOk(i,y) == 0)
 			{
 				if ( i+1 >= 9 )
@@ -195,6 +181,7 @@ int calculatData(int x, int y)
 			for(int v = 1; v <= 9; v++ )
 			{
 				sudu[i][j] = v;
+
 				if ( isNumberOk(i,j) == 0)
 				{
 					if ( i+1 >= 9 )
